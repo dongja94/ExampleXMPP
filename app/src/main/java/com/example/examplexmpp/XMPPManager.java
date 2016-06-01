@@ -3,7 +3,6 @@ package com.example.examplexmpp;
 import android.os.Handler;
 import android.os.Looper;
 
-import org.jivesoftware.smack.AbstractXMPPConnection;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.SmackException;
@@ -52,9 +51,9 @@ public class XMPPManager {
     private final static String HOST = "dongja94.gonetis.com";
 
     //	private final static String DOMAIN = "talk.google.com";
+//    private final static String SERVICE = "gmail.com";
     private final static int PORT = 5222;
-    private final static String SERVICE = "gmail.com";
-    private AbstractXMPPConnection mXmppConnection;
+    private XMPPTCPConnection mXmppConnection;
     private FileTransferManager mFileManager;
     Handler mHandler = new Handler(Looper.getMainLooper());
     ThreadPoolExecutor mExecutor;
@@ -151,11 +150,7 @@ public class XMPPManager {
         try {
             mXmppConnection.connect();
             return true;
-        } catch (XMPPException e) {
-            e.printStackTrace();
-        } catch (SmackException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (SmackException | IOException | XMPPException e) {
             e.printStackTrace();
         }
         return false;
@@ -184,11 +179,7 @@ public class XMPPManager {
             mXmppConnection.login(userId, password);
             initializeAfterLogin();
             return true;
-        } catch (XMPPException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SmackException e) {
+        } catch (XMPPException | IOException | SmackException e) {
             e.printStackTrace();
         }
         return false;
@@ -305,7 +296,7 @@ public class XMPPManager {
         Presence presence = new Presence(Presence.Type.available);
         presence.setStatus(status);
         try {
-            mXmppConnection.sendPacket(presence);
+            mXmppConnection.sendStanza(presence);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
