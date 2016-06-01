@@ -1,9 +1,5 @@
 package com.example.examplexmpp;
 
-import java.util.List;
-
-import org.jivesoftware.smack.Chat;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -20,6 +16,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.examplexmpp.XMPPManager.OnActionListener;
+
+import org.jivesoftware.smack.chat.Chat;
+
+import java.util.List;
 
 public class ChattingActivity extends ActionBarActivity {
 

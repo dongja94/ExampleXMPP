@@ -1,9 +1,5 @@
 package com.example.examplexmpp;
 
-import org.jivesoftware.smack.Chat;
-import org.jivesoftware.smack.packet.Message;
-import org.jivesoftware.smackx.filetransfer.FileTransferRequest;
-
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -14,11 +10,16 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.examplexmpp.XMPPManager.OnActionListener;
 import com.example.examplexmpp.XMPPManager.OnFileReceiveListener;
 import com.example.examplexmpp.XMPPManager.OnMessageListener;
+
+import org.jivesoftware.smack.chat.Chat;
+import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smackx.filetransfer.FileTransferRequest;
 
 public class ChattingService extends Service {
 	private static final String TAG = "ChattingService";
@@ -41,6 +42,9 @@ public class ChattingService extends Service {
 
 		@Override
 		public void onReceived(Chat chat, Message message) {
+			Log.i("ChattingService", message.toString());
+			String body = message.getBody();
+			if (TextUtils.isEmpty(body)) return;
 			final ChatMessage cm = new ChatMessage();
 			cm.mateId = XMPPManager.getInstance().getUserId(chat.getParticipant());
 			cm.message = message.getBody();

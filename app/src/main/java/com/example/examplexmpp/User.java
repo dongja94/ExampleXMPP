@@ -1,7 +1,7 @@
 package com.example.examplexmpp;
 
-import org.jivesoftware.smack.RosterEntry;
 import org.jivesoftware.smack.packet.Presence;
+import org.jivesoftware.smack.roster.RosterEntry;
 
 public class User {
 	public RosterEntry entry;

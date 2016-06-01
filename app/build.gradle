@@ -21,5 +21,8 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.android.support:support-v4:21.0.3'
-    compile files('libs/asmack-android-8-0.8.5.jar')
+    compile 'org.igniterealtime.smack:smack-android:4.1.7'
+    compile 'org.igniterealtime.smack:smack-tcp:4.1.7'
+    compile 'org.igniterealtime.smack:smack-im:4.1.7'
+    compile 'org.igniterealtime.smack:smack-extensions:4.1.7'
 }
